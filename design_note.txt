@@ -1,0 +1,17 @@
+Practical 6: OOP Design & Dunder Methods
+Class Design Notes
+
+1. Class Fields
+The BankAccount class stores the account holder's name, account number, and balance. The holder and account_number fields identify the account. The balance is stored in _balance, which indicates that it is intended for internal use. The opening balance is converted to a float so that amounts can include decimal values.
+
+2. Methods
+The __init__() constructor initializes a new account and checks the holder's name and opening balance. get_balance() returns the current balance. deposit(amount) adds money to the account after validating the amount. withdraw(amount) subtracts money only when the amount is positive and sufficient funds are available. __str__() provides a readable account summary, while __repr__() provides a developer-oriented representation containing the account details.
+
+3. Validation Rules
+The account holder's name cannot be blank. The opening balance cannot be negative. Deposit and withdrawal amounts must be greater than zero. A withdrawal cannot exceed the available balance. Invalid operations raise ValueError, allowing the caller to handle the error instead of silently accepting an invalid transaction.
+
+4. Operator Overloading
+The __add__() method overloads the + operator for two BankAccount objects. For example, account1 + account2 returns the sum of their balances. It returns a numeric total rather than creating a new account, because a combined balance does not automatically represent a real account with its own identity. The operation does not change either account's balance. If the other object is not a BankAccount, the method returns NotImplemented.
+
+5. Testing
+The program creates two accounts, deposits 250 into Asha's account, and withdraws 100 from Kabir's account. It prints the readable form, developer representation, individual balance, and combined balance. It also tests invalid operations by attempting to withdraw more money than is available and to deposit a negative amount. Both invalid operations are caught and displayed as validation messages.
